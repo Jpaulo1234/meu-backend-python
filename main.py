@@ -109,6 +109,7 @@ async def youtube_info(url: str):
     ydl_opts = {
         'quiet': True,
         'no_warnings': True,
+        'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
     }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -149,6 +150,7 @@ async def youtube_download(url: str = Form(...), format_id: str = Form(...)):
             'format': format_id,
             'outtmpl': os.path.join(temp_dir, '%(title)s.%(ext)s'),
             'quiet': True,
+            'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
         }
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
